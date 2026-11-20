@@ -3,6 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#2F6B4F">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="하루 기록장">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -504,9 +510,13 @@ const Store={mode:'pending',base:null,ready:false,q:Promise.resolve(),
     if(this.mode==='db'){S.profile=p;schedule();return this.run(()=>this.base.set(p))}
     S.profile=p;this.saveLocal();schedule();return Promise.resolve()}
 };
+function browserName(){const u=navigator.userAgent||'';
+  if(/SamsungBrowser/i.test(u))return '삼성 인터넷';if(/Whale/i.test(u))return '네이버 웨일';if(/EdgA?\//i.test(u))return '엣지';
+  if(/KAKAOTALK/i.test(u))return '카카오톡 브라우저';if(/NAVER\(/i.test(u))return '네이버 앱';
+  if(/Firefox|FxiOS/i.test(u))return '파이어폭스';if(/Chrome|CriOS/i.test(u))return '크롬';if(/Safari/i.test(u))return '사파리';return '이 브라우저'}
 function setSync(){const c=$('#syncChip'),t=$('#syncText');
   if(Store.mode==='db'){c.classList.add('on');t.textContent='계정에 저장'}
-  else if(Store.mode==='local'){t.textContent='이 브라우저에 저장'}
+  else if(Store.mode==='local'){t.textContent=browserName()+'에 저장'}
   else t.textContent='임시 저장(새로 고치면 사라짐)';}
 function guard(){if(!Store.ready){toast('기록을 불러오는 중이에요. 잠시만요.');return false}return true}
 

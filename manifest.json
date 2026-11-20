@@ -1,0 +1,15 @@
+{
+  "name": "하루 기록장",
+  "short_name": "하루 기록장",
+  "description": "운동·독서·식단을 기록하고 부족한 영양소와 하루 피드백을 알려 주는 생활 기록 앱",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F1F4F1",
+  "theme_color": "#2F6B4F",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
